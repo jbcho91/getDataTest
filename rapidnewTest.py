@@ -3,12 +3,14 @@ from dotenv import load_dotenv
 import os
 import csv
 
+load_dotenv()
+
 def save_results_to_csv(results, csv_file_path):
     with open(csv_file_path, mode='a', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         # CSV 파일의 첫 행에 헤더 추가 (첫 페이지에만 추가)
         if file.tell() == 0:
-            writer.writerow(["Title", "URL", "Published At"])
+            writer.writerow(["title", "url", "excerpt", 'thumbnail', 'language', 'paywall', 'contentLength', 'date'])
                         
         for data in results['data']:
             title = data.get('title', 'N/A')
